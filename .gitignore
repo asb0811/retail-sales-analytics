@@ -5,3 +5,11 @@ Thumbs.db
 # Workbench backups
 *.mwb
 *.bak
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# VS Code
+.vscode/

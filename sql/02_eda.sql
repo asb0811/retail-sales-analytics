@@ -94,6 +94,31 @@ SELECT
 FROM orders;
 
 
+-- 4b. empty string check for text columns
+SELECT 
+    SUM(CASE WHEN TRIM(order_id) = ''      THEN 1 ELSE 0 END) AS blank_order_id,
+    SUM(CASE WHEN TRIM(ship_mode) = ''     THEN 1 ELSE 0 END) AS blank_ship_mode,
+    SUM(CASE WHEN TRIM(customer_id) = ''   THEN 1 ELSE 0 END) AS blank_customer_id,
+    SUM(CASE WHEN TRIM(customer_name) = '' THEN 1 ELSE 0 END) AS blank_customer_name,
+    SUM(CASE WHEN TRIM(segment) = ''       THEN 1 ELSE 0 END) AS blank_segment,
+    SUM(CASE WHEN TRIM(country) = ''       THEN 1 ELSE 0 END) AS blank_country,
+    SUM(CASE WHEN TRIM(city) = ''          THEN 1 ELSE 0 END) AS blank_city,
+    SUM(CASE WHEN TRIM(state) = ''         THEN 1 ELSE 0 END) AS blank_state,
+    SUM(CASE WHEN TRIM(postal_code) = ''   THEN 1 ELSE 0 END) AS blank_postal_code,
+    SUM(CASE WHEN TRIM(region) = ''        THEN 1 ELSE 0 END) AS blank_region,
+    SUM(CASE WHEN TRIM(product_id) = ''    THEN 1 ELSE 0 END) AS blank_product_id,
+    SUM(CASE WHEN TRIM(category) = ''      THEN 1 ELSE 0 END) AS blank_category,
+    SUM(CASE WHEN TRIM(sub_category) = ''  THEN 1 ELSE 0 END) AS blank_sub_category,
+    SUM(CASE WHEN TRIM(product_name) = ''  THEN 1 ELSE 0 END) AS blank_product_name
+FROM orders;
+
+
+-- 4c. inspect rows with blank postal_code
+SELECT row_id, order_id, city, state, postal_code, region
+FROM orders
+WHERE TRIM(postal_code) = '';
+
+
 -- 5. full row duplicates
 SELECT 
     order_id, order_date, ship_date, ship_mode, customer_id, customer_name,
